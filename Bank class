@@ -1,0 +1,27 @@
+package Groupproject;
+
+public class Bank {
+        private String bankName;
+        private String accountHolder;
+        private int accountNo;
+        Bank(String bankName, String accountHolder, int accountNo){
+        	this.bankName=bankName;
+        	this.accountHolder=accountHolder;
+        	this.accountNo=accountNo;
+        }
+        public String getBankName() {
+        	return bankName;
+        }
+        public String getAccountHolder() {
+        	return accountHolder;
+        }
+        public int getAccountNo() {
+        	return accountNo;
+        }
+        public void showBankDetails() {
+            System.out.println("Bank: " + bankName);
+            System.out.println("Account Holder: " + accountHolder);
+            System.out.println("Account Number: " + accountNo);
+        }
+}
+BANK CLASS
