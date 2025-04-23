@@ -1,0 +1,234 @@
+MAIN CLASS      package Groupproject;
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		//Setup users
+		ArrayList<User> users = new ArrayList<>();
+		users.add(new User("admin","admin123"));
+		users.add(new User("User1","pass1"));
+		users.add(new User("John","doe123"));
+		
+		Login login = new Login(users);
+		User loggedInUser = login.authenticate(); // this will keep looping until successful Login
+		// Input for name
+		String name;
+		while(true) {
+			System.out.println("Enter passenger Name: ");
+			name = sc.nextLine();
+			
+			//Check if the name contains any numbers
+			if (name.matches("[a-zA-Z]+")) {
+				break; //Valid name , exit Loop
+			}else {
+				System.out.println("Invalid name ! Please enter a valid name.");
+			}
+		}
+		
+		//Input for age
+		
+		int age = -1;
+		while (age<=0) {
+			System.out.println("Enter passenger Age: ");
+			if (sc.hasNextInt()) {
+				age = sc.nextInt();
+				if (age <=0) {
+					System.out.println("Please enter a postive age.");
+				}
+			}else {
+				System.out.println("Invalid input! Please enter a valid age.");
+                sc.next(); // Consume the invalid input
+			}
+		}
+		sc.nextLine(); //Clear the buffer
+		
+		//Input for gender
+		String gender;
+		System.out.println("Enter the gender: ");
+		gender = sc.nextLine();
+		
+		Passenger p1 = new Passenger(name,age,gender);
+		p1.showPassenger();
+
+
+		 
+		    
+		
+
+        
+		
+        
+        ArrayList<Bus> busList = new ArrayList<>();
+        
+        
+       //Bus 1
+        ArrayList<String> stops1 = new ArrayList<String>(Arrays.asList("Mumbai Central","Thane","Kalyan","Pune"));
+        Stops route1 = new Stops(stops1);
+        Bus bus1 = new Bus(5001,"AC","Mumbai Central","Pune","02/06/2025","08:00",40,150);
+        bus1.addRoute(route1);
+        busList.add(bus1);
+        
+        //Bus 2
+        ArrayList<String> stops2 = new ArrayList<String>(Arrays.asList("Mumbai Central","Vapi","Surat","Baroda","Ahmedabad"));
+        Stops route2 = new Stops(stops2);
+        Bus bus2 = new Bus(3004,"Sleeper","Mumbai Central","Ahmedabad","02/06/2025","09:30",38,250);
+        bus2.addRoute(route2);
+        busList.add(bus2);
+        
+        //Bus 3
+        ArrayList<String> stops3 = new ArrayList<>(Arrays.asList("Mumbai Central", "Navi Mumbai", "Panvel", "Ratnagiri","Goa"));
+        Stops route3 = new Stops(stops3);
+        Bus bus3 = new Bus(3003, "Non-AC", "Mumbai Central", "Goa", "03/06/2025", "07:00", 45,100);
+        bus3.addRoute(route3);
+        busList.add(bus3);
+        
+        //Bus 4
+        ArrayList<String> stops4 = new ArrayList<>(Arrays.asList("Mumbai Central", "Nashik", "Dhule", "Indore"));
+        Stops route4 = new Stops(stops4);
+        Bus bus4 = new Bus(5004, "AC Sleeper", "Mumbai Central", "Indore", "04/06/2025", "10:00", 35,350);
+        bus4.addRoute(route4);
+        busList.add(bus4);
+        
+        //Bus 5
+        ArrayList<String> stops5 = new ArrayList<>(Arrays.asList("Mumbai Central", "Dadar", "Bandra", "Borivali","Dahanu"));
+        Stops route5 = new Stops(stops5);
+        Bus bus5 = new Bus(1005, "Mini Bus", "Mumbai Central", "Dahanu", "06/06/2025", "11:00", 30,90);
+        bus5.addRoute(route5);
+        busList.add(bus5);
+        
+        //Bus 6
+        ArrayList<String> stops6 = new ArrayList<>(Arrays.asList("Mumbai Central", "Pune", "Solapur", "Hyderabad"));
+        Stops route6 = new Stops(stops6);
+        Bus bus6 = new Bus(1006, "AC Sleeper", "Mumbai Central", "Hyderabad", "07/06/2025", "17:00", 50,500);
+        bus6.addRoute(route6);
+        busList.add(bus6);
+        
+        //Bus 7
+        ArrayList<String> stops7 = new ArrayList<>(Arrays.asList("Mumbai Central", "Lonavala", "Satara", "Kolhapur"));
+        Stops route7 = new Stops(stops7);
+        Bus bus7 = new Bus(1007, "Deluxe", "Mumbai Central", "Kolhapur", "05/06/2025", "06:30", 42,650);
+        bus7.addRoute(route7);
+        busList.add(bus7);
+        
+        //Show all buses
+        for (Bus b : busList) {
+        	b.DisplayBus();
+        	b.showRoute();
+        	}
+        
+ 
+        ArrayList<Bus> availableBuses = new ArrayList<>();
+        boolean found = false;
+
+        do {
+        	availableBuses.clear(); // clear previous attempt
+        	System.out.println("Enter the start location of journey : ");
+        	String start = sc.nextLine();
+        	System.out.println("Enter the end location of journey : ");
+        	String end = sc.nextLine();
+
+        	System.out.println("Enter the date of journey (dd/mm/yyyy) : ");
+        	String journeyDate = sc.nextLine();
+
+        	System.out.println("\nBuses from " + start + " to " + end + " :");
+
+        	for (Bus b : busList) {
+        		if (b.goesFromTo(start, end) && b.getDate().equals(journeyDate)) {
+        			b.DisplayBus();
+        			availableBuses.add(b);
+        			found = true;
+        		}
+        	}
+
+        	if (!found) {
+        		System.out.println("No buses found for this route and date. Please try again.\n");
+        	}
+
+        } while (!found);
+
+	
+	//User choosing a bus
+	System.out.println("\n Enter the bus number you want to choose");
+	int busChosen = sc.nextInt();
+	sc.nextLine(); //consume next Line
+	
+	Bus busSelected = null;
+	for (Bus b : availableBuses) {
+		if (b.getBusno() == busChosen) {
+			busSelected = b;
+			break;
+		}
+	}
+	if (busSelected == null) {
+		System.out.println("Invalid bus choice!");
+		return;
+	}
+	
+	//Choosing no of seats;
+	
+	
+	System.out.println("Enter how many seats you want to book (one at a time): ");
+	int seatsToBook = sc.nextInt();
+	sc.nextLine(); //Consume next Line
+	
+	
+	//Payment  for booking
+			System.out.println("Enter the bank details : ");
+			System.out.println("Enter the Bank name : ");
+			String bankName = sc.nextLine();
+			System.out.println("Enter the Accountant name : ");
+			String accountantName = sc.nextLine();
+			System.out.println("Enter the Account no : ");
+			int accountNo = sc.nextInt();
+			sc.nextLine();
+			Bank bank = new Bank(bankName, accountantName, accountNo);
+			bank.showBankDetails();
+			
+			double totalFare = busSelected.getFare()*seatsToBook;
+			
+			System.out.println("Proceed for payment !! Have patience");
+	
+	
+	
+	for (int i =1 ; i <= seatsToBook; i++) {
+		System.out.println("\nBooking seat "+i+" ... ");
+		busSelected.bookSeat();
+	}
+	
+	
+	
+	System.out.println("\n================ TICKET DETAILS ================");
+	System.out.println(" Passenger Name      : " + name);
+	System.out.println(" Age                 : " + age);
+	System.out.println(" Gender              : " + gender);
+	System.out.println("------------------------------------------------");
+	System.out.println(" Bus Number          : " + busSelected.getBusno());
+	System.out.println(" Bus Type            : " + busSelected.getType());
+	System.out.println(" Journey             : " + busSelected.getStart() + " ➝ " + busSelected.getEnd());
+	System.out.println(" Date & Time         : " + busSelected.getDate() + " at " + busSelected.getTime());
+	System.out.println(" Seats Booked        : " + seatsToBook);
+	System.out.println(" Remaining Seats     : " + busSelected.getAvailableSeats());
+	System.out.println("------------------------------------------------");
+	System.out.println(" Paid via Bank       : " + bankName);
+	System.out.println(" Account Holder Name : " + accountantName);
+	System.out.println(" Account Number      : " + accountNo);
+	System.out.println("Total fare -- "+ totalFare);
+	System.out.println("================================================");
+	System.out.println("      Thank you! Have a safe and happy journey. ");
+	System.out.println("================================================");
+	
+	//Cancel ticket
+	System.out.println("Do you want to cancel the ticket :: (YES/NO)");
+	String action = sc.nextLine();
+	if (action.equalsIgnoreCase("YES")) {
+		busSelected.cancelSeat();
+	}else if (action.equalsIgnoreCase("NO")) {
+		System.out.println("Thank you! Have a safe and happy journey.");
+	}else {
+		System.out.println("Invalid action.");
+	}
+	
+}
+}
