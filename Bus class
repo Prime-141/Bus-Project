@@ -1,0 +1,139 @@
+package Groupproject;
+import java.util.*;
+public class Bus {
+      private int busNo;
+      private String busType;
+      private ArrayList<Stops> routes;
+      private String date;
+      private String time;
+      private String busStart;
+      private String busEnd;
+      private int totalSeats;
+      private int availableSeats;
+      private double fare;
+      
+      
+      
+      //Constructor
+      Bus(int busNo, String busType, String busStart, String busEnd ,String date, String time, int totalSeats, double fare){
+    	  this.busNo=busNo;
+    	  this.routes= new ArrayList<>();
+    	  this.date=date;
+    	  this.time=time;
+    	  this.busType=busType;
+    	  this.busStart=busStart;
+    	  this.busEnd=busEnd;
+    	  this.totalSeats=totalSeats;
+    	  this.availableSeats=totalSeats; // Initially all seats are available
+    	  this.fare=fare;
+      }
+      
+      //Getting bus no
+      public int getBusno() {
+    	  return busNo;
+      }
+      
+      //Add route to bus
+      public void addRoute(Stops r) {
+    	  routes.add(r);
+      }
+      
+      
+      // Returning the routes
+      public ArrayList<Stops> getRoute(){
+    	  return routes;
+      }
+      
+      
+      //Getting date of bus to start the journey
+      public String getDate() {
+    	  return date;
+      }
+      
+      
+      //Getting time of start journey
+      public String getTime() {
+    	  return time;
+      }
+      
+      //Getting type of bus
+      public String getType() {
+    	  return busType;
+      }
+      
+      //Start location
+      public String getStart() {
+    	  return busStart;
+      }
+      
+      //End location
+      public String getEnd() {
+    	  return busEnd;
+      }
+      
+      //Total seats initial
+      public int getTotalSeats() {
+    	  return totalSeats;
+      }
+      public double getFare() {
+    	  return fare;
+      }
+      
+      
+      //Display bus information
+      public void DisplayBus() {
+    	System.out.println("Bus Number : "+ busNo);
+    	System.out.println("Bus Type : "+ busType);
+    	System.out.println("From: "+busStart+ " To: "+ busEnd);
+    	System.out.println("Date: "+date+" Time: "+time);
+    	System.out.println("Available Seats: " + availableSeats + "/" + totalSeats);
+    	System.out.println("Fare/seat : "+fare);
+      }
+      
+      
+      //Show the route of the bus
+      public void showRoute() {
+    	  for(Stops s : routes) {
+    		  System.out.println("Route : "+ s.getStops());
+    	  }
+      }
+     
+     //Method check is the Bus going from one particular start to end or not and in correct order
+      public boolean goesFromTo(String start, String end) {
+    	  if (routes.isEmpty()) return false;  // if bus doesn't have any routes so return false 
+    	  
+    	  Stops route = routes.get(0); // Assuming every bus has one Stops object
+    	  ArrayList<String> stopList = route.getStops(); //return an ArrayList
+    	  int startIndex = stopList.indexOf(start);
+    	  int endIndex = stopList.indexOf(end);
+    	  
+    	  if (startIndex == -1 || endIndex == -1) {
+    		  return false; // no start and end 
+    	  }
+    	  return startIndex < endIndex;
+    	  
+      }
+    
+      public int getAvailableSeats() {
+    	 return availableSeats;
+      }
+      
+      //Raj works
+      public void bookSeat() {
+          if (availableSeats > 0) {
+              availableSeats--;
+              System.out.println("Seat booked successfully!");
+          } else {
+              System.out.println("No seats available to book.");
+          }
+      }
+      public void cancelSeat() {
+          if (availableSeats < totalSeats) {
+              availableSeats++;
+              System.out.println("Seat cancellation successful!");
+          } else {
+              System.out.println("All seats are already available.");
+          }
+      }
+      
+}
