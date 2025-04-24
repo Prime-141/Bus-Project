@@ -1,1 +1,12 @@
+package Groupproject;
+import java.util.*;
+public class Stops {
+       private ArrayList<String> stops;
+       Stops(ArrayList<String> stops){
+    	   this.stops=stops;
+       }
+       public ArrayList<String> getStops(){
+    	   return this.stops;
+       }
+}
 
