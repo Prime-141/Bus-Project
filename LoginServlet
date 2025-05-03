@@ -1,0 +1,47 @@
+
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    private ArrayList<User> users = new ArrayList<>();
+    
+    
+    @Override
+    public void init() throws ServletException{
+    	users.add(new User("admin1","1470"));
+    	users.add(new User("admin2","9630"));
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		for (User user : users) {
+			if(user.checkCredentials(username, password)) {
+				// Redirect to Bus List page after successful login
+				response.sendRedirect(request.getContextPath() + "/buslist.html");
+
+				return;
+			}
+		}
+		response.sendRedirect("login.html? error");
+	}
+
+}
