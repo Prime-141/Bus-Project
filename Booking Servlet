@@ -1,0 +1,135 @@
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class BookingServlet
+ */
+@WebServlet("/booking")
+public class BookingServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 // Step 1: Get passenger data
+        String busNo = request.getParameter("busno");
+        String passengerName = request.getParameter("pname");
+        String age = request.getParameter("age");
+        String seats = request.getParameter("seats");
+        String busType = request.getParameter("bustype");
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        
+        
+       
+        // Step 2: Set response
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang='en'>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+        out.println("<title>Document</title>");
+        out.println("<style>");
+        out.println("body {");
+        out.println("  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);");
+        out.println("  padding: 20px;");
+        out.println("  min-height: 100vh;");
+        out.println("}");
+        out.println("h2 {");
+        out.println("  text-align: center;");
+        out.println("  margin-bottom: 40px;");
+        out.println("  margin-top: 20px;");
+        out.println("  text-decoration: underline;");
+        out.println("  font-family: Arial, Helvetica, sans-serif;");
+        out.println("  text-shadow: 2px 2px 8px;");
+        out.println("  animation: color 3s ease-in 3s infinite alternate;");
+        out.println("}");
+        out.println("@keyframes color {");
+        out.println("  0% { color: aqua; }");
+        out.println("  25% { color: rgb(0, 98, 255); }");
+        out.println("  50% { color: rgb(53, 6, 238); }");
+        out.println("  75% { color: rgb(102, 0, 255); }");
+        out.println("  100% { color: rgb(204, 0, 255); }");
+        out.println("}");
+        out.println("form {");
+        out.println("  text-align: center;");
+        out.println("  background: linear-gradient(45deg, rgb(189, 224, 229), rgba(11, 125, 238, 0.642));");
+        out.println("  padding: 20px;");
+        out.println("  border-radius: 8px;");
+        out.println("  max-width: 400px;");
+        out.println("  margin: auto;");
+        out.println("  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);");
+        out.println("}");
+        out.println("label {");
+        out.println("  font-weight: bold;");
+        out.println("  display: block;");
+        out.println("  margin-top: 10px;");
+        out.println("}");
+        out.println("input, button {");
+        out.println("  width: 80%;");
+        out.println("  padding: 8px;");
+        out.println("  border-radius: 20px;");
+        out.println("  border: none;");
+        out.println("  margin: 5px;");
+        out.println("}");
+        out.println("button {");
+        out.println("  background: linear-gradient(45deg, rgb(0, 140, 255), rgb(82, 82, 209));");
+        out.println("  width: 50%;");
+        out.println("  border: none;");
+        out.println("  font-family: cursive;");
+        out.println("}");
+        out.println("button:hover {");
+        out.println("  background: linear-gradient(45deg, rgb(192, 108, 233), rgb(230, 124, 156));");
+        out.println("  cursor: pointer;");
+        out.println("  font-weight: bolder;");
+        out.println("  transition: 0.5s;");
+        out.println("}");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h2>Enter Payment Details :</h2>");
+        out.println("<form action='payment' method='post'>");
+        out.println("<input type='hidden' name='busno' value='" + busNo + "'>");
+        out.println("<input type='hidden' name='pname' value='" + passengerName + "'>");
+        out.println("<input type='hidden' name='age' value='" + age + "'>");
+        out.println("<input type='hidden' name='seats' value='" + seats + "'>");
+        out.println("<input type='hidden' name='bustype' value='" + busType + "'>");
+        out.println("<input type='hidden' name='start' value='" + start + "'>");
+        out.println("<input type='hidden' name='end' value='" + end + "'>");
+        out.println("<input type='hidden' name='date' value='" + date + "'>");
+        out.println("<input type='hidden' name='time' value='" + time + "'>");
+        out.println("<label for='card'>Card Number :</label>");
+        out.println("<input type='number' id='card' name='cardno' required>");
+        out.println("<br><br>");
+        out.println("<label for='cvv'>CVV :</label>");
+        out.println("<input type='password' id='cvv' name='cvv' required>");
+        out.println("<br><br>");
+        out.println("<label>Name on Card:</label>");
+        out.println("<input type='text' name='cardname' required>");
+        out.println("<button type='submit'>Pay Now</button>");
+        out.println("</form>");
+        out.println("</body>");
+        out.println("</html>");
+
+	}
+
+}
+
