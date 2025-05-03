@@ -1,0 +1,114 @@
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class PaymentServlet
+ */
+@WebServlet("/payment")
+public class PaymentServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		 // Step 1: Get data from request
+        String passengerName = request.getParameter("pname");
+        String age = request.getParameter("age");
+        String seats = request.getParameter("seats");
+        String busNo = request.getParameter("busno");
+        String busType = request.getParameter("bustype");
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String cardName = request.getParameter("cardname");
+
+        // Step 2: Set response
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        // Step 3: Display booking success
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang='en'>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+        out.println("<title>Document</title>");
+        out.println("<style>");
+        out.println(".container{box-sizing:border-box;border:4px dotted black;max-width:400px;margin:20px auto;padding:5px;background:wheat;border-radius:3px;overflow:hidden;}");
+        out.println("h3{text-align:center;}");
+        out.println("#Passenger, #Bus, #Journey, #Pay{display:flex;justify-content:center;align-items:baseline;}");
+        out.println("#bookAnother{text-align:center;margin-top:10px;}");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<div class='container'>");
+        out.println("<div id='head'><h3>Ticket Details</h3></div>");
+        out.println("<hr>");
+
+        // Passenger Details
+        out.println("<div id='Passenger'>");
+        out.println("<h4>✨Passenger Details :</h4>");
+        out.println("<ul>");
+        out.println("<li>Name : " + passengerName + "</li>");
+        out.println("<li>Age : " + age + "</li>");
+        out.println("<li>No of Seats Booked : " + seats + "</li>");
+        out.println("</ul>");
+        out.println("</div>");
+        out.println("<hr>");
+
+        // Bus Details
+        out.println("<div id='Bus'>");
+        out.println("<h4>✨Bus Details :</h4>");
+        out.println("<ul>");
+        out.println("<li>Bus Number : " + busNo + "</li>");
+        out.println("<li>Bus Type : " + busType + "</li>");
+        out.println("<li>From : " + start + "</li>");
+        out.println("<li>To : " + end + "</li>");
+        out.println("</ul>");
+        out.println("</div>");
+        out.println("<hr>");
+
+        // Journey Details
+        out.println("<div id='Journey'>");
+        out.println("<h4>✨Journey Details :</h4>");
+        out.println("<ul>");
+        out.println("<li>Date of Journey : " + date + "</li>");
+        out.println("<li>Time of Departure : " + time + "</li>");
+        out.println("</ul>");
+        out.println("</div>");
+        out.println("<hr>");
+
+        // Payment Details
+        out.println("<div id='Pay'>");
+        out.println("<h4>✨Payment Details :</h4>");
+        out.println("<ul>");
+        out.println("<li>Paid By : " + cardName + "</li>");
+        out.println("</ul>");
+        out.println("</div>");
+
+        // Book Another Link
+        out.println("<div id='bookAnother'>");
+        out.println("<a href='buslist.html'>Book Another</a>");
+        out.println("</div>");
+
+        out.println("</div>"); // closing container div
+        out.println("</body>");
+        out.println("</html>");
+
+	}
+
+}
