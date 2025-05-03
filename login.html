@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bus booking - LOGIN</title>
+<style>
+   *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+   }
+   body{
+    background-color: lightgray;
+    
+    
+   }
+   .box{
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%,-50%);
+          border: 2px solid rgb(3, 62, 255);
+          border-radius: 20px;
+          padding: 50px;
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(10px);
+          background: rgba(255,255,255,0.2);
+   }
+   button{
+    padding: 10px 30px;
+    background: linear-gradient(45deg, #00dbde, #fc00ff);
+    border: none;
+    border-radius: 20px;
+    font-weight: bolder;
+    font-size: 16px;
+    color: white;
+    transition: 0.4s;
+    width: 100%;
+   }
+   button:hover{
+    background: linear-gradient(45deg, #fc466b, #3f5efb);
+    cursor: pointer;
+   }
+   h1{
+    text-align: center;
+    margin: 20px;
+    font-size: 36px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 94, 255);
+    text-shadow: 3px 4px 5px red;
+    border: 5px solid transparent;
+    animation: word 4s linear infinite;
+
+   }
+   h1::after{
+    content: "🚌🚌";
+   }
+   h1::before{
+    content: "🚌🚌"
+   }
+   label{
+    font-family: cursive;
+    font-size: larger;
+   }
+   input{
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.6);
+    font-size: 16px;
+   }
+   input:focus{
+    outline: none;
+    background: rgba(255,255,255,0.9);
+   }
+   
+   @keyframes word{
+    0%{
+        color: aqua;
+    }
+    25%{
+        color: red;
+    }
+    50%{
+        color: green;
+    }
+    75%{
+        color: magenta;
+    }
+    100%{
+        color: cyan;
+    }
+   }
+   
+</style>
+</head>
+<body>
+    
+    
+    <h1>Welcome to BusTravels</h1>
+    <div class="box">
+        <div>
+            <form action="login" method="post">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="pass">Password: </label>
+            <input type="password" id="pass" name="password" required><br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
