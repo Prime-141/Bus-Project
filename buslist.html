@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Bus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h2>Search Bus</h2>
+
+    <form action="searchbus" method="post">
+        <label for="start">Start Location:</label>
+        <input type="text" name="start" required>
+
+        <label for="end">End Location:</label>
+        <input type="text" name="end" required>
+
+        <button type="submit">Search Bus</button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Bus-No</th>
+            <th>Bus-Type</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Total-Seats</th>
+            <th>Fare</th>
+        </tr>
+
+        <tr>
+            <td>5001</td>
+            <td>AC</td>
+            <td>Mumbai Central</td>
+            <td>Pune</td>
+            <td>02/06/2025</td>
+            <td>08:00</td>
+            <td>40</td>
+            <td>150</td>
+        </tr>
+
+        <tr>
+            <td>3004</td>
+            <td>Sleeper</td>
+            <td>Mumbai Central</td>
+            <td>Ahmedabad</td>
+            <td>02/06/2025</td>
+            <td>09:30</td>
+            <td>38</td>
+            <td>250</td>
+        </tr>
+
+        <tr>
+            <td>3003</td>
+            <td>Non-AC</td>
+            <td>Mumbai Central</td>
+            <td>Goa</td>
+            <td>03/06/2025</td>
+            <td>07:00</td>
+            <td>45</td>
+            <td>100</td>
+        </tr>
+
+        <tr>
+            <td>5004</td>
+            <td>AC Sleeper</td>
+            <td>Mumbai Central</td>
+            <td>Indore</td>
+            <td>04/06/2025</td>
+            <td>10:00</td>
+            <td>35</td>
+            <td>350</td>
+        </tr>
+
+        <tr>
+            <td>1005</td>
+            <td>Mini Bus</td>
+            <td>Mumbai Central</td>
+            <td>Dahanu</td>
+            <td>06/06/2025</td>
+            <td>11:00</td>
+            <td>30</td>
+            <td>90</td>
+        </tr>
+        
+        <tr>
+            <td>2004</td>
+            <td>AC</td>
+            <td>Mumbai Central</td>
+            <td>Nashik</td>
+            <td>06/06/2025</td>
+            <td>12:00</td>
+            <td>40</td>
+            <td>100</td>
+        </tr>
+        
+        <tr>
+            <td>2005</td>
+            <td>AC</td>
+            <td>Mumbai Central</td>
+            <td>Satara</td>
+            <td>02/06/2025</td>
+            <td>10:30</td>
+            <td>38</td>
+            <td>160</td>
+        </tr>
+        
+        <tr>
+            <td>3006</td>
+            <td>Sleeper</td>
+            <td>Mumbai Central</td>
+            <td>Trimbak</td>
+            <td>06/06/2025</td>
+            <td>14:00</td>
+            <td>40</td>
+            <td>120</td>
+        </tr>
+        
+        <tr>
+            <td>4002</td>
+            <td>AC Sleeper</td>
+            <td>Mumbai Central</td>
+            <td>Karwar</td>
+            <td>03/06/2025</td>
+            <td>06:30</td>
+            <td>42</td>
+            <td>150</td>
+        </tr>
+        
+        <tr>
+            <td>1006</td>
+            <td>Mini Bus</td>
+            <td>Mumbai Central</td>
+            <td>Boisar</td>
+            <td>06/06/2025</td>
+            <td>13:00</td>
+            <td>30</td>
+            <td>85</td>
+        </tr>
+        
+        <tr>
+            <td>5005</td>
+            <td>AC</td>
+            <td>Mumbai Central</td>
+            <td>Gandhinagar</td>
+            <td>02/06/2025</td>
+            <td>10:40</td>
+            <td>40</td>
+            <td>280</td>
+        </tr>
+    </table>
+</body>
+</html>
