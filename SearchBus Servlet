@@ -1,0 +1,179 @@
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+/**
+ * Servlet implementation class SearchBusServlet
+ */
+@WebServlet("/searchbus")
+public class SearchBusServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	private ArrayList<Bus> buses = new ArrayList<>();
+	
+	
+
+	@Override
+	public void init() throws ServletException {
+	    Bus bus1 = new Bus(5001, "AC", "Mumbai Central", "Pune", "02/06/2025", "08:00", 150, 40);
+	    Stops stop1 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Thane", "Kalyan", "Pune")));
+	    bus1.addRoute(stop1);
+
+	    Bus bus2 = new Bus(3004, "Sleeper", "Mumbai Central", "Ahmedabad", "02/06/2025", "09:30", 250, 38);
+	    Stops stop2 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Vapi", "Surat", "Baroda", "Ahmedabad")));
+	    bus2.addRoute(stop2);
+
+	    Bus bus3 = new Bus(3003, "Non-AC", "Mumbai Central", "Goa", "03/06/2025", "07:00", 100, 45);
+	    Stops stop3 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Navi Mumbai", "Panvel", "Ratnagiri", "Goa")));
+	    bus3.addRoute(stop3);
+
+	    Bus bus4 = new Bus(5004, "AC Sleeper", "Mumbai Central", "Indore", "04/06/2025", "10:00", 350, 35);
+	    Stops stop4 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Nashik", "Dhule", "Indore")));
+	    bus4.addRoute(stop4);
+
+	    Bus bus5 = new Bus(1005, "Mini Bus", "Mumbai Central", "Dahanu", "06/06/2025", "11:00", 90, 30);
+	    Stops stop5 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Dadar", "Bandra", "Borivali", "Dahanu")));
+	    bus5.addRoute(stop5);
+	    
+	    Bus bus6 = new Bus(2004,"AC","Mumbai Central","Nashik","06/06/2025","12:00",100,40);
+	    Stops stop6 = new Stops(new ArrayList<>(List.of("Mumbai Central","Dadar","Thane","Kalyan","Shahapur","Nashik")));
+	    bus6.addRoute(stop6);
+	    
+	    Bus bus7 = new Bus(2005, "AC", "Mumbai Central", "Satara", "02/06/2025", "10:30", 160, 38);
+	    Stops stop7 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Dadar", "Thane", "Lonavala", "Pune", "Satara")));
+	    bus7.addRoute(stop7);
+	    
+	    Bus bus8 = new Bus(3006, "Sleeper", "Mumbai Central", "Trimbak", "06/06/2025", "14:00", 120, 40);
+	    Stops stop8 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Thane", "Kalyan", "Shahapur", "Nashik", "Trimbak")));
+	    bus8.addRoute(stop8);
+	    
+	    Bus bus9 = new Bus(4002, "AC Sleeper", "Mumbai Central", "Karwar", "03/06/2025", "06:30", 150, 42);
+	    Stops stop9 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Panvel", "Ratnagiri", "Sawantwadi", "Goa", "Karwar")));
+	    bus9.addRoute(stop9);
+	    
+	    Bus bus10 = new Bus(1006, "Mini Bus", "Mumbai Central", "Boisar", "06/06/2025", "13:00", 85, 30);
+	    Stops stop10 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Dadar", "Andheri", "Borivali", "Vasai", "Boisar")));
+	    bus10.addRoute(stop10);
+	    
+	    Bus bus11 = new Bus(5005, "AC", "Mumbai Central", "Gandhinagar", "02/06/2025", "10:45", 280, 40);
+	    Stops stop11 = new Stops(new ArrayList<>(List.of("Mumbai Central", "Vapi", "Navsari", "Surat", "Baroda", "Ahmedabad", "Gandhinagar")));
+	    bus11.addRoute(stop11);
+
+	    
+	    
+	    
+	    
+	    buses.add(bus1);
+	    buses.add(bus2);
+	    buses.add(bus3);
+	    buses.add(bus4);
+	    buses.add(bus5);
+	    buses.add(bus6);
+	    buses.add(bus7);
+	    buses.add(bus8);
+	    buses.add(bus9);
+	    buses.add(bus10);
+	    buses.add(bus11);
+	    
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String start = request.getParameter("start");
+		String end = request.getParameter("end");
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		out.println("<!DOCTYPE html>");
+		out.println("<html lang='en'>");
+		out.println("<head>");
+		out.println("<meta charset='UTF-8'>");
+		out.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+		out.println("<title>Available Buses</title>");
+		out.println("<style>");
+		out.println("*{ padding:0; margin:0; box-sizing:border-box; }");
+		out.println("body{ font-family:Arial, Helvetica, sans-serif; background-color:#f4f7f6; color:#333; text-align:center; }");
+		out.println(".container{ width:80%; margin:40px auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }");
+		out.println("h3{ font-size:24px; color:#2a5d84; margin-bottom:10px; }");
+		out.println("#line{ display:flex; flex-wrap:wrap; margin:10px 0; justify-content:space-between; }");
+		out.println("#line h4{ font-size:18px; margin:5px 0; }");
+		out.println("#line p{ font-size:16px; color:#555; margin:5px 0; }");
+		out.println("button{ padding:10px 30px; background:#3db6f2; color:white; border:none; border-radius:5px; font-size:16px; cursor:pointer; transition:background-color 0.3s ease; }");
+		out.println("button:hover{ background:#029abf; }");
+		out.println(".bus-card {");
+		out.println("  border: 1px solid #ccc;");
+		out.println("  border-radius: 10px;");
+		out.println("  padding: 20px;");
+		out.println("  margin-bottom: 20px;");
+		out.println("  background-color: #fefefe;");
+		out.println("  box-shadow: 0 2px 4px rgba(0,0,0,0.1);");
+		out.println("}");
+		out.println("</style>");
+		out.println("</head>");
+		out.println("<body>");
+
+		out.println("<div class='container'>");
+		out.println("<h3>Available Buses</h3>");
+
+		boolean busFound = false;
+
+		for(Bus bus : buses) {
+		    if(bus.goesFromTo(start, end)) {
+		        busFound = true;
+		        
+		        out.println("<div class='bus-card'>");
+
+		        out.println("<h3>BUS NO: " + bus.getBusno() + "</h3>");
+		        out.println("<div id='line'>");
+		        out.println("<p>" + bus.getType() + "</p>");
+		        out.println("<h4>" + bus.getStart() + " To " + bus.getEnd() + "</h4>");
+		        out.println("<p>" + bus.getDate() + "</p>");
+		        out.println("<p>" + bus.getTime() + "</p>");
+		        out.println("</div>");
+
+		        out.println("<div id='line'>");
+		        out.println("<p>Rs." + bus.getFare() + "</p>");
+		        out.println("<form action='viewseats' method='post'>");
+		        out.println("<input type='hidden' name='busno' value='" + bus.getBusno() + "'>");
+		        out.println("<input type='hidden' name='availableseats' value='" + bus.getAvailableSeats() + "'>");
+		        out.println("<input type='hidden' name='bustype' value='" + bus.getType()+"'>");
+		        out.println("<input type='hidden' name='start' value='"+ bus.getStart()+"'>");
+		        out.println("<input type='hidden' name='end' value='"+ bus.getEnd()+"'>");
+		        out.println("<input type='hidden' name='date' value='"+ bus.getDate()+"'>");
+		        out.println("<input type='hidden' name='time' value='"+ bus.getTime()+"'>");
+		        out.println("<button type='submit'>View Seats</button>");
+		        out.println("</form>");
+		        out.println("</div>");
+
+		        out.println("</div>"); // end of bus-card
+
+
+		    }
+		}
+
+		if(!busFound) {
+		    out.println("<p>No buses available for this route.</p>");
+		}
+
+		out.println("</div>"); // Close container
+		out.println("</body>");
+		out.println("</html>");
+
+	}
+
+}
+
+
