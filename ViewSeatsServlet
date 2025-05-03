@@ -1,0 +1,131 @@
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/viewseats")
+public class ViewSeatsServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//	1. Get the bus number.
+		String busNo = request.getParameter("busno");
+		String busType = request.getParameter("bustype");
+		String start = request.getParameter("start");
+		String end = request.getParameter("end");
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		String availableSeats = request.getParameter("availableseats");
+		// 2. Set response content type.
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		// 3. Start writing HTML
+		out.println("<!DOCTYPE html>");
+		out.println("<html lang='en'>");
+		out.println("<head>");
+		out.println("<meta charset='UTF-8'>");
+		out.println("<title>Book Seats</title>");
+		out.println("<style>");
+		out.println("body {");
+		out.println("    font-family: Arial, sans-serif;");
+		out.println("    background-color: #f0f0f0;");
+		out.println("    padding: 20px;");
+		out.println("}");
+		out.println("form {");
+		out.println("    background: linear-gradient(45deg, rgb(205, 153, 153), rgb(171, 171, 247));");
+		out.println("    padding: 20px;");
+		out.println("    border-radius: 8px;");
+		out.println("    max-width: 400px;");
+		out.println("    margin: auto;");
+		out.println("    box-shadow: 5px 5px 10px rgba(251, 0, 0, 0.999);");
+		out.println("}");
+		out.println("label {");
+		out.println("    font-weight: bold;");
+		out.println("    display: block;");
+		out.println("    margin-top: 10px;");
+		out.println("}");
+		out.println("input, button {");
+		out.println("    width: 100%;");
+		out.println("    padding: 8px;");
+		out.println("    margin-top: 5px;");
+		out.println("    margin-bottom: 15px;");
+		out.println("    border: 1px solid #ccc;");
+		out.println("    border-radius: 4px;");
+		out.println("}");
+		out.println("button {");
+		out.println("    background-color: #4CAF50;");
+		out.println("    color: white;");
+		out.println("    border: none;");
+		out.println("}");
+		out.println("button:hover {");
+		out.println("    background-color: #26b42d;");
+		out.println("    cursor: pointer;");
+		out.println("    box-shadow: 4px 5px 8px rgba(0, 255, 4, 0.811);");
+		out.println("    font-size: 15px;");
+		out.println("    transition: 0.9s;");
+		out.println("    color: red;");
+		out.println("    text-decoration: underline;");
+		out.println("    font-weight: 400;");
+		out.println("}");
+		out.println("h2 {");
+		out.println("    text-align: center;");
+		out.println("    margin-bottom: 20px;");
+		out.println("    animation: color 4s linear 1s infinite alternate;");
+		out.println("}");
+		out.println("@keyframes color {");
+		out.println("    0% { color: #4CAF50; }");
+		out.println("    25% { color: red; }");
+		out.println("    50% { color: aqua; }");
+		out.println("    75% { color: magenta; }");
+		out.println("    100% { color: maroon; }");
+		out.println("}");
+		out.println("</style>");
+		out.println("</head>");
+		out.println("<body>");
+
+		out.println("<h2>Booking for Bus Number: " + busNo + "</h2>");
+
+		out.println("<form action='booking' method='post'>");
+		out.println("<input type='hidden' name='busno' value='" + busNo + "'>");
+	    out.println("<input type='hidden' name='bustype' value='" + busType+"'>");
+	    out.println("<input type='hidden' name='start' value='" + start+"'>");
+	    out.println("<input type='hidden' name='end' value='" + end+"'>");
+	    out.println("<input type='hidden' name='date' value='" + date+"'>");
+	    out.println("<input type='hidden' name='time' value='" + time+"'>");
+	    out.println("<input type='hidden' name='availableseats' value='" + availableSeats+"'>");
+	    
+		out.println("<label>Passenger Name:</label>");
+		out.println("<input type='text' name='pname' required>");
+
+		out.println("<label>Age:</label>");
+		out.println("<input type='number' name='age' required>");
+
+		out.println("<label>Number of Seats:</label>");
+		out.println("<input type='number' name='seats' min='1' required>");
+
+		out.println("<button type='submit'>Proceed to Booking</button>");
+		out.println("</form>");
+
+		out.println("</body>");
+		out.println("</html>");
+
+	}
+
+}
