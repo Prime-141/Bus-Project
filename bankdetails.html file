@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      margin-top: 20px;
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+      text-shadow: 2px 2px 8px;
+      animation: color 3s ease-in 3s infinite alternate;
+    }
+
+    @keyframes color {
+      0% { color: aqua; }
+      25% { color: rgb(0, 98, 255); }
+      50% { color: rgb(53, 6, 238); }
+      75% { color: rgb(102, 0, 255); }
+      100% { color: rgb(204, 0, 255); }
+    }
+
+    form {
+      text-align: center;
+      background: linear-gradient(45deg, rgb(189, 224, 229), rgba(11, 125, 238, 0.642));
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, button {
+      width: 80%;
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+      margin: 5px;
+    }
+
+    button {
+      background: linear-gradient(45deg, rgb(0, 140, 255), rgb(82, 82, 209));
+      width: 50%;
+      border: none;
+      font-family: cursive;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, rgb(192, 108, 233), rgb(230, 124, 156));
+      cursor: pointer;
+      font-weight: bolder;
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <h2>Enter Payment Details :</h2>
+  <form action="payment" method="post">
+    <!-- Hidden fields -->
+    <input type="hidden" name="busno" value="${busNo}">
+    <input type="hidden" name="pname" value="${passengerName}">
+    <input type="hidden" name="age" value="${age}">
+    <input type="hidden" name="seats" value="${seats}">
+    <input type="hidden" name="bustype" value="${busType}">
+    <input type="hidden" name="start" value="${start}">
+    <input type="hidden" name="end" value="${end}">
+    <input type="hidden" name="date" value="${date}">
+    <input type="hidden" name="time" value="${time}">
+    <input type="hidden" name="fare" value="${fare}">
+
+    <!-- Payment inputs -->
+    <label for="card">Card Number :</label>
+    <input type="number" id="card" name="cardno" required>
+
+    <label for="cvv">CVV :</label>
+    <input type="password" id="cvv" name="cvv" required>
+
+    <label>Name on Card:</label>
+    <input type="text" name="cardname" required>
+
+    <button type="submit">Pay Now</button>
+  </form>
+</body>
+</html>
