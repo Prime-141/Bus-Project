@@ -1,0 +1,444 @@
+Login html 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bus booking - LOGIN</title>
+<style>
+   * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('images/highway.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+body::after {
+    content: '🚌';
+    position: fixed;
+    font-size: 150px;
+    color: rgba(255, 255, 255, 0.3);
+    
+    right: 20px;
+    z-index: 0;
+    pointer-events: none;
+    animation: drive 8s linear 0.4s infinite;
+}
+@keyframes drive{
+    0%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+    50%{
+        opacity: 0.9;
+
+    }
+    100%{
+        transform:  translateX(-200vh);
+        opacity: 0;
+    }
+}
+
+.box {
+   
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: all 0.4s ease;
+    animation: slideup 2s ease forwards;
+}
+@keyframes slideup{
+    from{opacity:0;
+         transform: translateY(20px);
+    
+    
+    }
+    to{
+    opacity:1; transform: translateY(0);
+    }
+
+
+
+}
+
+.box:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -50%) scale(1.02);
+    backdrop-filter: blur(10px);
+}
+h1 {
+    text-align: center;
+    margin: 10px 0 40px;
+    font-size: 36px;
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    background: linear-gradient(to right, #fa052e, #ff1a01);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    animation: fadeIn 1.5s ease-in-out;
+    
+}
+@keyframes fadeIn{
+    from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+label {
+    font-family: 'Segoe UI', cursive;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    color: #333;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+}
+input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #002fff, #026feb);
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    margin: 10px 0;
+    transition: background 0.4s ease, transform 0.3s ease;
+}
+button:hover {
+    background: linear-gradient(45deg, #a7d811, #48bc1a);
+    cursor: pointer;
+    transform: scale(1.03);
+    color: #ff1a01;
+}
+#forgot {
+    text-align: right;
+    margin-top: -15px; /* Pull it closer to the password input */
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#forgot a {
+    text-decoration: none;
+    color: #026feb; /* matching button blue */
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+#forgot a:hover {
+    color: #a7d811; /* matching button hover green */
+    text-decoration: underline;
+}
+footer{
+    margin-top: 40px;
+    color: #026feb;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px red;
+}
+.subtitle {
+    font-size: 26px;
+    color: blue;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px #000;
+    animation: subtitleFadeIn 2.5s ease-in-out forwards;
+    opacity: 0;
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+@keyframes subtitleFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.3) translateY(20px);
+        color: blue;
+    }
+    60% {
+        opacity: 0.7;
+        transform: scale(1.05) translateY(0);
+        color: purple;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        color: rgb(0, 179, 255);
+    }
+}
+   
+</style>
+</head>
+<body>
+    
+    
+    <h1>RideOn</h1>
+    <p class="subtitle">Your journey starts here – safe, fast, and reliable.</p>
+    <div class="box">
+        <div>
+            <form action="login" method="post">
+            <label for="username">👤Username: </label>
+            <input type="text" id="username" name="username" placeholder="Enter the Username" required><br><br>
+            <label for="pass">🔑Password: </label>
+            <input type="password" id="pass" name="password" placeholder="Enter the password" required><br><br>
+            <div id="forgot"><a href="signup.html">Forget Password?</a></div>
+                <button type="submit">Login</button>
+            </form>
+            
+
+            <form action="signup.html">
+                  <button type="submit">Sign Up</button>
+            </form>
+            
+            
+        </div>
+       
+ 
+    </div>
+    <footer >© 2025 BUSRIDERS. All rights reserved.</footer>
+
+   
+    
+
+    
+</body>
+</html>
+
+Signup html
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create a New Account</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image:url('images/BUSbg.jpg');
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .signup-container {
+      backdrop-filter: blur(10px);
+      background-color: rgba(5, 47, 114, 0.27);
+      
+      padding: 40px 30px;
+      border: 2px solid rgb(108, 110, 107);
+      border-radius: 15px;
+      
+
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f9f6f6;
+      font-family: cursiv;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #f7f3f3;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #3a3939c3;
+      border-radius: 8px;
+      transition: border 0.3s;
+      background-color: rgb(201, 236, 237);
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #abe8a6;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #502de968;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00c6fb;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create a New Account</h2>
+    <form action="signup" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter the new Username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter the new Password" required>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</body>
+</html>
+
+LoginServlet 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//javax is pacakage name
+
+import java.io.IOException;  //IO Exception 
+import javax.servlet.ServletException; // This is exception for handling errors in Servlet
+import javax.servlet.annotation.WebServlet; // This is for using annotaion @WebServlet
+import javax.servlet.http.HttpServlet; // this is the base class for creating the servlet 
+import javax.servlet.http.HttpServletRequest; // for typing that request.getParameter()
+import javax.servlet.http.HttpServletResponse; //response.getWrtiter()
+import javax.servlet.http.HttpSession;// whenever user login here the data of name and password stores so that can be used any time (RAM).
+
+import java.util.*;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+    
+    // init() Initailising method
+    @Override
+    public void init() throws ServletException{  // making list of users which include username and admin
+    	ArrayList<User> users = new ArrayList<>();
+    	users.add(new User("admin1","1470"));
+    	users.add(new User("admin2","9630"));
+    	getServletContext().setAttribute("users", users); // Share the list
+    	//getServletContext() se ServletContext object milta hai, jo application ke scope me hota hai.
+    	//setAttribute("users", users) se ye list poori application (sab servlets aur JSPs) ke liye share kar di jaati hai.
+    	//list sab jagah accessible hoti hai jab tak application chal raha hai.
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Ek simple message likha browser me — mostly testing/debugging ke liye
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+	//So basically, response.getWriter() se hum client ko output dene ke liye ek writer le rahe hain.
+    // we have Do get method why as if we run the servlet from login.html after that browser will send by default a get request but that request
+	// will not handle as doGet method is not here and show erro 405
+	
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		//Getting username and password from the form by the name =" " value
+		String username = request.getParameter("username");  
+		String password = request.getParameter("password");
+		
+		@SuppressWarnings("unchecked") //No warnings 
+		ArrayList<User> users = (ArrayList<User>) getServletContext().getAttribute("users");
+		for (User user : users) {
+			if(user.checkCredentials(username, password)) {
+				// Redirect to Bus List page after successful login
+				
+				
+				//Session created  it will store the username for every page after the login procedure
+				HttpSession session = request.getSession();
+				session.setAttribute("username", username);// Session me username store kiya
+				session.setAttribute("password",password);//  Session me password store kiya
+				
+				//Login succesful
+				response.sendRedirect(request.getContextPath() + "/buslist.html");
+
+				return;
+			}
+		}
+		
+		// Wrong credentials
+		response.sendRedirect("login.html? error");
+	}
+
+}
+
+User java
+----------------------------------------------------------------------------------------------------------------------------------
+
+public class User {
+	   private  String username;
+	   private String password;
+
+	    public User (String username,String password){
+	    this.username= username;
+	    this.password= password;
+        }
+	    
+	    public boolean checkCredentials(String username, String password) {
+	        return this.username.equals(username) && this.password.equals(password);
+	    }
+
+	    public String getUsername() {
+	        return username;
+	    }
+	    public String getPassword(){
+	        return password;
+	    }
+	    
+	    
+	    
+	    	
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+}
+----------------------------------------------
