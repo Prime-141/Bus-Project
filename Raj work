@@ -1,0 +1,534 @@
+buslist html
+------------------------------------------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Search Bus</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f0f4f8, #dfe9f3);
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2 {
+        color: #1a73e8;
+        font-weight: 600;
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        text-align: center;
+        letter-spacing: 1.2px;
+    }
+
+    form {
+        background: white;
+        width: 100%;
+        max-width: 420px;
+        padding: 30px 35px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgb(26 115 232 / 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        transition: box-shadow 0.3s ease;
+    }
+    form:hover {
+        box-shadow: 0 12px 30px rgb(26 115 232 / 0.35);
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+        color: #444;
+    }
+
+    select, input[type="date"] {
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 2px solid #d0d7de;
+        font-size: 1rem;
+        font-weight: 600;
+        outline-offset: 2px;
+        transition: border-color 0.25s ease;
+        width: 100%;
+        cursor: pointer;
+        background-color: #f9fbfd;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        background-size: 16px 16px;
+    }
+
+    select:focus, input[type="date"]:focus {
+        border-color: #1a73e8;
+        background-color: white;
+        box-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
+    }
+
+    button {
+        margin: 15px auto 0 auto;
+        padding: 12px 0;
+        width: 60%;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #1a73e8 0%, #4285f4 100%);
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgb(26 115 232 / 0.3);
+        transition: background 0.3s ease;
+        user-select: none;
+    }
+
+    button:hover {
+        background: linear-gradient(90deg, #4285f4 0%, #1a73e8 100%);
+    }
+
+    table {
+        width: 100%;
+        max-width: 960px;
+        border-collapse: separate;
+        border-spacing: 0 12px;
+        margin-top: 40px;
+        background: transparent;
+    }
+
+    th, td {
+        padding: 14px 18px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    th {
+        background-color: #1a73e8;
+        color: white;
+        font-weight: 700;
+        border-radius: 12px 12px 0 0;
+        letter-spacing: 0.05em;
+        user-select: none;
+    }
+
+    tbody tr {
+        background-color: white;
+        box-shadow: 0 4px 8px rgb(26 115 232 / 0.1);
+        border-radius: 12px;
+        transition: transform 0.15s ease, box-shadow 0.3s ease;
+    }
+
+    tbody tr:hover {
+        box-shadow: 0 8px 20px rgb(26 115 232 / 0.2);
+        transform: translateY(-3px);
+    }
+
+    tbody td:first-child {
+        font-weight: 700;
+        color: #1a73e8;
+    }
+
+    @media (max-width: 720px) {
+        form {
+            padding: 25px 20px;
+        }
+        button {
+            width: 100%;
+        }
+        table {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+<h2>Search Bus</h2>
+
+<form action="searchbus" method="post" autocomplete="off">
+    <label for="start">FROM:</label>
+    <select name="start" id="start" required>
+        <option value="" disabled selected>From</option>
+        <option>Ahmedabad</option>
+        <option>Andheri</option>
+        <option>Baroda</option>
+        <option>Bandra</option>
+        <option>Boisar</option>
+        <option>Borivali</option>
+        <option>Dadar</option>
+        <option>Dahanu</option>
+        <option>Dhule</option>
+        <option>Gandhinagar</option>
+        <option>Goa</option>
+        <option>Indore</option>
+        <option>Karwar</option>
+        <option>Kalyan</option>
+        <option>Lonavala</option>
+        <option>Mumbai Central</option>
+        <option>Nashik</option>
+        <option>Navsari</option>
+        <option>Navi Mumbai</option>
+        <option>Panvel</option>
+        <option>Pune</option>
+        <option>Ratnagiri</option>
+        <option>Satara</option>
+        <option>Sawantwadi</option>
+        <option>Shahapur</option>
+        <option>Surat</option>
+        <option>Thane</option>
+        <option>Trimbak</option>
+        <option>Vapi</option>
+        <option>Vasai</option>
+    </select>
+
+    <label for="end">TO:</label>
+    <select name="end" id="end" required>
+        <option value="" disabled selected>To</option>
+        <option>Ahmedabad</option>
+        <option>Andheri</option>
+        <option>Baroda</option>
+        <option>Bandra</option>
+        <option>Boisar</option>
+        <option>Borivali</option>
+        <option>Dadar</option>
+        <option>Dahanu</option>
+        <option>Dhule</option>
+        <option>Gandhinagar</option>
+        <option>Goa</option>
+        <option>Indore</option>
+        <option>Karwar</option>
+        <option>Kalyan</option>
+        <option>Lonavala</option>
+        <option>Mumbai Central</option>
+        <option>Nashik</option>
+        <option>Navsari</option>
+        <option>Navi Mumbai</option>
+        <option>Panvel</option>
+        <option>Pune</option>
+        <option>Ratnagiri</option>
+        <option>Satara</option>
+        <option>Sawantwadi</option>
+        <option>Shahapur</option>
+        <option>Surat</option>
+        <option>Thane</option>
+        <option>Trimbak</option>
+        <option>Vapi</option>
+        <option>Vasai</option>
+    </select>
+
+    <label for="date">DATE of Journey:</label>
+    <input type="date" name="date" id="date" required />
+
+    <button type="submit">Search Bus</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Bus-No</th>
+            <th>Bus-Type</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Total-Seats</th>
+            <th>Fare (₹)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>5001</td>
+            <td>AC</td>
+            <td>Mumbai Central</td>
+            <td>Pune</td>
+            <td>02/06/2025</td>
+            <td>08:00</td>
+            <td>40</td>
+            <td>150</td>
+        </tr>
+        <tr>
+            <td>3004</td>
+            <td>Sleeper</td>
+            <td>Mumbai Central</td>
+            <td>Ahmedabad</td>
+            <td>02/06/2025</td>
+            <td>09:30</td>
+            <td>38</td>
+            <td>250</td>
+        </tr>
+        <tr>
+            <td>3003</td>
+            <td>Non-AC</td>
+            <td>Mumbai Central</td>
+            <td>Goa</td>
+            <td>03/06/2025</td>
+            <td>07:00</td>
+            <td>45</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>5004</td>
+            <td>AC Sleeper</td>
+            <td>Mumbai Central</td>
+            <td>Indore</td>
+            <td>04/06/2025</td>
+            <td>10:00</td>
+            <td>35</td>
+            <td>350</td>
+        </tr>
+        <tr>
+            <td>1005</td>
+            <td>Mini Bus</td>
+            <td>Mumbai Central</td>
+            <td>Dahanu</td>
+            <td>06/06/2025</td>
+            <td>11:00</td>
+            <td>30</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td>2004</td>
+            <td>AC</td>
+            <td>Mumbai Central</td>
+            <td>Nashik</td>
+            <td>06/06/2025</td>
+            <td>12:00</td>
+            <td>40</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>2005</td>
+            <td>AC</td>
+            <td>Mumbai Central</td>
+            <td>Satara</td>
+            <td>02/06/2025</td>
+            <td>10:30</td>
+            <td>38</td>
+            <td>160</td>
+        </tr>
+        <tr>
+            <td>3006</td>
+            <td>Sleeper</td>
+            <td>Mumbai Central</td>
+            <td>Trimbak</td>
+            <td>06/06/2025</td>
+            <td>14:00</td>
+            <td>38</td>
+            <td>210</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+
+viewseat servlet
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/viewseats")
+public class ViewSeatsServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//	1. Get the bus number.
+		String busNo = request.getParameter("busno");
+		String busType = request.getParameter("bustype");
+		String start = request.getParameter("start");
+		String end = request.getParameter("end");
+		String date = request.getParameter("date");
+		String time = request.getParameter("time");
+		String availableSeats = request.getParameter("availableseats");
+		String fare = request.getParameter("fare");
+		
+		// 2. Set response content type.
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		// 3. Start writing HTML
+		out.println("<!DOCTYPE html>");
+		out.println("<html lang='en'>");
+		out.println("<head>");
+		out.println("    <meta charset='UTF-8'>");
+		out.println("    <title>Book Seats</title>");
+		out.println("    <style>");
+		out.println("        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px; margin: 0; background: linear-gradient(135deg, #792222, #2d54f1); display: flex; justify-content: center; align-items: center; min-height: 100vh; }");
+		out.println("        form { background: rgba(255, 255, 255, 0.599); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(50px); padding: 32px; border-radius: 12px; max-width: 500px; width: 100%; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); display: grid; gap: 20px; animation: slideup 2s ease forwards; border: 1px solid rgba(255, 255, 255, 0.2); }");
+		out.println("        @keyframes slideup { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }");
+		out.println("        label { font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 8px; }");
+		out.println("        input[type=\"text\"], input[type=\"number\"], button { padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: border-color 0.3s ease, box-shadow 0.3s ease; color: #1e293b; font-weight: 500; background: rgba(255, 255, 255, 0.8); }");
+		out.println("        input[type=\"text\"]:focus, input[type=\"number\"]:focus, button:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); outline: none; }");
+		out.println("        input[type=\"text\"]:hover, input[type=\"number\"]:hover { border-color: #ff0000; }");
+		out.println("        .radio-group { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }");
+		out.println("        .radio-option { display: flex; align-items: center; gap: 8px; }");
+		out.println("        input[type=\"radio\"] { width: 16px; height: 16px; accent-color: #6366f1; cursor: pointer; }");
+		out.println("        input[type=\"radio\"]:focus { box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); }");
+		out.println("        button { background-color: #6366f1; color: white; font-weight: 600; border: none; padding: 12px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; }");
+		out.println("        button:hover { background-color: #4f46e5; transform: translateY(-2px); }");
+		out.println("        h2 { text-align: center; margin: 0 0 24px; color: #1e293b; font-size: 28px; font-weight: 700; }");
+		out.println("        .form-group { display: grid; gap: 8px; }");
+		out.println("    </style>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("    <form action='booking' method='post'>");
+		out.println("        <h2>Reserve Your Seat:"+busNo+"</h2>");
+		out.println("        <input type='hidden' name='busno' value='" + busNo+"'>");
+		out.println("        <input type='hidden' name='bustype' value='"+ busType+"'>");
+		out.println("        <input type='hidden' name='start' value='"+start+"'>");
+		out.println("        <input type='hidden' name='end' value='"+end+"'>");
+		out.println("        <input type='hidden' name='date' value='"+date+"'>");
+		out.println("        <input type='hidden' name='time' value='"+time+"'>");
+		out.println("        <input type='hidden' name='fare' value='"+fare+"'>");
+		out.println("        <input type='hidden' id='availableseats' name='availableseats' value='"+availableSeats+"'>");
+		out.println("        <div class='form-group'>");
+		out.println("            <label for='pname'>Passenger Name</label>");
+		out.println("            <input type='text' id='pname' name='pname' required placeholder='Enter your name'>");
+		out.println("        </div>");
+		out.println("        <div class='form-group'>");
+		out.println("            <label for='age'>Age</label>");
+		out.println("            <input type='number' id='age' name='age' min='5' max='55' required placeholder='5-55'>");
+		out.println("        </div>");
+		out.println("        <div class='form-group'>");
+		out.println("            <label>Gender</label>");
+		out.println("            <div class='radio-group'>");
+		out.println("                <div class='radio-option'>");
+		out.println("                    <input type='radio' id='male' name='gender' value='male' required>");
+		out.println("                    <label for='male'>Male</label>");
+		out.println("                </div>");
+		out.println("                <div class='radio-option'>");
+		out.println("                    <input type='radio' id='female' name='gender' value='female' required>");
+		out.println("                    <label for='female'>Female</label>");
+		out.println("                </div>");
+		out.println("                <div class='radio-option'>");
+		out.println("                    <input type='radio' id='other' name='gender' value='other' required>");
+		out.println("                    <label for='other'>Other</label>");
+		out.println("                </div>");
+		out.println("            </div>");
+		out.println("        </div>");
+		out.println("        <div class='form-group'>");
+		out.println("            <label for='seats'>Number of Seats</label>");
+		out.println("            <input type='number' id='seats' name='seats' min='1' max='40' required placeholder='1-40'>");
+		out.println("        </div>");
+		out.println("        <button type='submit'>Book Now</button>");
+		out.println("    </form>");
+		out.println("    <script>");
+		out.println("    document.addEventListener('DOMContentLoaded', function () {");
+		out.println("      const ageInput = document.getElementById('age');");
+		out.println("      const seatsInput = document.getElementById('seats');");
+		out.println("      const maxAge = 55;");
+		out.println("      const maxSeats = 40;");
+		out.println("      ageInput.addEventListener('input', function () {");
+		out.println("        let value = parseInt(this.value);");
+		out.println("        if (value > maxAge) { this.value = maxAge; }");
+		out.println("        else if (value < 5 && this.value !== '') { this.value = 5; }");
+		out.println("      });");
+		out.println("      seatsInput.addEventListener('input', function () {");
+		out.println("        let value = parseInt(this.value);");
+		out.println("        if (value > maxSeats) { this.value = maxSeats; }");
+		out.println("        else if (value < 1 && this.value !== '') { this.value = 1; }");
+		out.println("      });");
+		out.println("    });");
+		out.println("    </script>");
+		out.println("</body>");
+		out.println("</html>");
+
+
+	}
+
+}
+
+Signup.html
+-------------------------------------------------------------------------------------------------------------------------------------
+
+  
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SignupServlet
+ */
+@WebServlet("/signup")
+public class SignupServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request,response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        ServletContext context = getServletContext();
+        @SuppressWarnings("unchecked")
+        ArrayList<User> users = (ArrayList<User>) context.getAttribute("users");
+
+        // If null, initialize it here
+        if (users == null) {
+            users = new ArrayList<>();
+            context.setAttribute("users", users);
+        }
+
+        String newUsername = request.getParameter("username");
+        String newPassword = request.getParameter("password");
+
+        for (User u : users) {
+            if (u.getUsername().equals(newUsername)) {
+                response.getWriter().println("Username already exists.");
+                return;
+            }
+        }
+
+        users.add(new User(newUsername, newPassword));
+        response.sendRedirect("login.html");
+    }
+
+}
