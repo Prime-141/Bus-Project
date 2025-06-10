@@ -4,7 +4,7 @@ Login html
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bus booking - LOGIN</title>
+<title>Bus Booking - LOGIN</title>
 <style>
    * {
     padding: 0;
@@ -18,44 +18,32 @@ body {
     min-height: 100vh;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-body::after {
+ /*body::after {
     content: '🚌';
     position: fixed;
     font-size: 150px;
     color: rgba(255, 255, 255, 0.3);
-    
     right: 20px;
     z-index: 0;
     pointer-events: none;
     animation: drive 8s linear 0.4s infinite;
 }
-@keyframes drive{
-    0%{
-        transform: translateX(0);
-        opacity: 1;
-    }
-    50%{
-        opacity: 0.9;
-
-    }
-    100%{
-        transform:  translateX(-200vh);
-        opacity: 0;
-    }
-}
-
+@keyframes drive {
+    0% { transform: translateX(0); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translateX(-200vh); opacity: 0; }
+} */
 .box {
-   
     border-radius: 20px;
     padding: 40px 30px;
     width: 100%;
     max-width: 400px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.264);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -63,20 +51,10 @@ body::after {
     transition: all 0.4s ease;
     animation: slideup 2s ease forwards;
 }
-@keyframes slideup{
-    from{opacity:0;
-         transform: translateY(20px);
-    
-    
-    }
-    to{
-    opacity:1; transform: translateY(0);
-    }
-
-
-
+@keyframes slideup {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
 .box:hover {
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
     transform: translate(-50%, -50%) scale(1.02);
@@ -85,20 +63,20 @@ body::after {
 h1 {
     text-align: center;
     margin: 10px 0 40px;
-    font-size: 36px;
+    font-size: 46px;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 3px 5px;
     font-family: 'Verdana', Geneva, Tahoma, sans-serif;
-    background: linear-gradient(to right, #fa052e, #ff1a01);
+    background: linear-gradient(45deg, gold, cyan);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     animation: fadeIn 1.5s ease-in-out;
-    
 }
-@keyframes fadeIn{
+@keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+    to { opacity: 1; transform: scale(1); }
 }
-
 label {
     font-family: 'Segoe UI', cursive;
     font-size: 16px;
@@ -141,28 +119,26 @@ button:hover {
 }
 #forgot {
     text-align: right;
-    margin-top: -15px; /* Pull it closer to the password input */
+    margin-top: -15px;
     margin-bottom: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 #forgot a {
     text-decoration: none;
-    color: #026feb; /* matching button blue */
+    color: #ffffff;
     font-size: 14px;
     font-weight: 600;
     transition: color 0.3s ease;
 }
-
 #forgot a:hover {
-    color: #a7d811; /* matching button hover green */
+    color: #ff0000;
     text-decoration: underline;
 }
-footer{
+footer {
     margin-top: 40px;
-    color: #026feb;
-    font-weight: 600;
-    text-shadow: 1px 1px 3px red;
+    color: #ffffff;
+    font-weight: 900;
+    
 }
 .subtitle {
     font-size: 26px;
@@ -177,60 +153,71 @@ footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 @keyframes subtitleFadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(1.3) translateY(20px);
-        color: blue;
-    }
-    60% {
-        opacity: 0.7;
-        transform: scale(1.05) translateY(0);
-        color: purple;
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-        color: rgb(0, 179, 255);
-    }
+    0% { opacity: 0; transform: scale(1.3) translateY(20px); color: rgb(255, 145, 0); text-shadow: 1px 2px 3px orange; }
+    60% { opacity: 0.7; transform: scale(1.05) translateY(0); color: rgb(255, 181, 7); text-shadow: 1px 2px 3px orange; }
+    100% { opacity: 1; transform: scale(1) translateY(0); color: rgb(255, 221, 1); text-shadow: 4px 5px 6px rgb(255, 221, 1); }
 }
-   
+.error {
+    color: #ff1a01;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
 </style>
 </head>
 <body>
-    
-    
-    <h1>RideOn</h1>
+    <h1>BusYatri</h1>
     <p class="subtitle">Your journey starts here – safe, fast, and reliable.</p>
-    <div class="box">
+
+    <!-- START button -->
+    <div id="welcomeSection">
+        <button onclick="showLogin()" style="padding: 12px 24px; font-size: 18px; border-radius: 30px;
+                background: linear-gradient(45deg, #ff5722, #ff9800); color: white; border: none;
+                cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s;">
+            🚀 Start Booking
+        </button>
+    </div>
+
+    <!-- Login box hidden initially -->
+    <div class="box" id="loginBox" style="display: none;">
         <div>
             <form action="login" method="post">
-            <label for="username">👤Username: </label>
-            <input type="text" id="username" name="username" placeholder="Enter the Username" required><br><br>
-            <label for="pass">🔑Password: </label>
-            <input type="password" id="pass" name="password" placeholder="Enter the password" required><br><br>
-            <div id="forgot"><a href="signup.html">Forget Password?</a></div>
+                <label for="username">👤 Username: </label>
+                <input type="text" id="username" name="username" placeholder="Enter the Username" required><br><br>
+                <label for="pass">🔑 Password: </label>
+                <input type="password" id="pass" name="password" placeholder="Enter the password" required><br><br>
+                <div id="forgot"><a href="signup.html">Forget Password?</a></div>
                 <button type="submit">Login</button>
             </form>
-            
-
             <form action="signup.html">
-                  <button type="submit">Sign Up</button>
+                <button type="submit">Sign Up</button>
             </form>
-            
-            
         </div>
-       
- 
     </div>
-    <footer >© 2025 BUSRIDERS. All rights reserved.</footer>
 
-   
-    
+    <footer>© 2025 BUSRIDERS. All rights reserved.</footer>
 
-    
+    <!-- JavaScript to toggle form and show error -->
+    <script>
+        function showLogin() {
+            document.getElementById("welcomeSection").style.display = "none";
+            document.getElementById("loginBox").style.display = "block";
+        }
+        // Check for error parameter in URL
+        window.onload = function() {
+            if (window.location.search.includes("error")) {
+                document.getElementById("welcomeSection").style.display = "none";
+                document.getElementById("loginBox").style.display = "block";
+                const errorDiv = document.createElement("div");
+                errorDiv.className = "error";
+                errorDiv.textContent = "Invalid username or password!";
+                document.getElementById("loginBox").prepend(errorDiv);
+            }
+        };
+    </script>
 </body>
 </html>
-
 Signup html
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 <!DOCTYPE html>
